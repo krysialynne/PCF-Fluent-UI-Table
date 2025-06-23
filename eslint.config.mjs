@@ -1,39 +1,13 @@
-import eslintjs from "@eslint/js";
-import microsoftPowerApps from "@microsoft/eslint-plugin-power-apps";
-import pluginPromise from "eslint-plugin-promise";
+import js from "@eslint/js";
 import globals from "globals";
-import typescriptEslint from "typescript-eslint";
+import tseslint from "typescript-eslint";
+import pluginReact from "eslint-plugin-react";
+import { defineConfig } from "eslint/config";
 
-/** @type {import('eslint').Linter.Config[]} */
-export default [
-  {
-    ignores: ["**/generated/"],
-  },
-  eslintjs.configs.recommended,
-  ...typescriptEslint.configs.recommended,
-  ...typescriptEslint.configs.stylistic,
-  pluginPromise.configs["flat/recommended"],
-  microsoftPowerApps.configs.paCheckerHosted,
-  {
-    plugins: {
-      "@microsoft/power-apps": microsoftPowerApps,
-    },
 
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-        ComponentFramework: true,
-      },
-      parserOptions: {
-        ecmaVersion: 2020,
-        sourceType: "module",
-        projectService: true,
-        tsconfigRootDir: import.meta.dirname,
-      },
-    },
-
-    rules: {
-      "@typescript-eslint/no-unused-vars": "off",
-    },
-  },
-];
+export default defineConfig([
+  { files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"], plugins: { js }, extends: ["js/recommended"] },
+  { files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"], languageOptions: { globals: globals.browser } },
+  tseslint.configs.recommended,
+  pluginReact.configs.flat.recommended,
+]);

@@ -23,6 +23,15 @@
       <!-- UNCOMMENT TO ADD PROPERTY-SET NODE
       <property-set name="samplePropertySet" display-name-key="Property_Display_Key" description-key="Property_Desc_Key" of-type="SingleLine.Text" usage="bound" required="true" />
       -->
+      <property name="Items" display-name-key="Items" of-type="DataSet" usage="bound" />
+
+      <property name="ColumnConfiguration" display-name-key="Column Configurations"
+          description-key="JSON array for column defaults (width, visibility, pinning)"
+          of-type="SingleLine.TextArea" usage="input" required="true" />
+      <property name="EnableFuzzySearch" display-name-key="Enable Fuzzy Search" of-type="TwoOptions" usage="input" default-value="true" />
+      <property name="EnableFiltering" display-name-key="Enable Filtering" of-type="TwoOptions" usage="input" default-value="true" />
+      <property name="EnableSorting" display-name-key="Enable Sorting" of-type="TwoOptions" usage="input" default-value="true" />
+      <property name="EnablePagination" display-name-key="Enable Pagination" of-type="TwoOptions" usage="input" default-value="true" />
     </data-set>
     <resources>
       <code path="index.ts" order="1"/>
