@@ -1,0 +1,34 @@
+{
+  "name": "Power Platform PCF Development",
+
+  // Use a standard Microsoft image that includes Node.js.
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+
+  "features": {
+    // The Power Platform CLI depends on the .NET SDK. This feature installs it.
+    "ghcr.io/devcontainers/features/dotnet:2": {
+      "version": "8.0"
+    }
+  },
+
+  // Ports to forward. 8181 is the default for the PCF test harness.
+  "forwardPorts": [8181],
+
+  // Commands to run after the container is created.
+  "postCreateCommand": "bash -c 'dotnet tool install --global Microsoft.PowerApps.CLI.Tool && npm install'",
+
+  // Configure VS Code settings and install extensions.
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+      },
+      "extensions": [
+        "ms-vscode.powerplatform-vscode",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-vscode.typescript-javascript-grammar"
+      ]
+    }
+  }
+}
